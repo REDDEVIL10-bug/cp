@@ -1,4 +1,4 @@
-vector<int> primes;
+vector<ll> primes;
 
 bool dataset[1000000]={false};
 void seive()
