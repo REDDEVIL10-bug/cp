@@ -1,0 +1,15 @@
+ll binpow(ll a,ll b,ll m)
+{
+    //a^b
+    a%=m;//if a greater than m
+    if(a==0) return 0;
+    ll res=1;
+    while(b>0)
+    {
+        if(b&1)//if b is odd
+            res=(res*a)%m;
+        b=b>>1;// y=y/2
+        a=(a*a)%m;
+    }
+    return res;
+}
