@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+typedef long long ll;
+typedef unsigned int ui;
+#define pb push_back
+using namespace std;
+
+int n,m;
+void addedge(int u,int v,vector<int>*vec)
+{
+    vec[u].pb(v);
+    vec[v].pb(u);
+}
+void dfs(int source,bool *visited,vector<int>*vec)
+{
+    if(visited[source])
+        return;
+    cout<<source<<" ";
+    visited[source]=true;
+    for(auto i:vec[source])
+    {
+        dfs(i,visited,vec);
+    }
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cin>>n>>m;
+    bool visited[n+1]={false};
+    vector<int>vec[n+1];
+    for(int i=0;i<m;i++)
+    {
+        int x,y;
+        cin>>x>>y;
+        addedge(x,y,vec);
+    }
+    dfs(1,visited,vec);
+}
