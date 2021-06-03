@@ -12,12 +12,12 @@ void addedge(int u,int v,vector<int>*vec)
 }
 void dfs(int source,bool *visited,vector<int>*vec)
 {
-    if(visited[source])
-        return;
-    cout<<source<<" ";
+
     visited[source]=true;
+    cout<<source<<" ";
     for(auto i:vec[source])
     {
+        if(visited[i]==false)
         dfs(i,visited,vec);
     }
 }
