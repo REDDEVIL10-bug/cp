@@ -1,0 +1,87 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int b,sb,sg;
+        cin>>b>>sb>>sg;
+        int arr1[sb];
+        int arr2[sg];
+        int sum1=0,sum2=0;
+        priority_queue<int>pq1;
+        priority_queue<int>pq2;
+        for(int i=0;i<sb;i++)
+        {
+            cin>>arr1[i];
+            pq1.push(arr1[i]);
+        }
+        for(int i=0;i<sg;i++)
+        {
+            cin>>arr2[i];
+            pq2.push(arr2[i]);
+        }
+        int restore=b;
+        vector<int>v1;
+        vector<int>v2;
+        while(!pq1.empty() && !pq2.empty())
+        {
+            int cholbe=min(pq1.size(),pq2.size());
+            cholbe=min(b,cholbe);
+            while(cholbe--)
+            {
+                int x=pq1.top();
+                pq1.pop();
+                int y=pq2.top();
+                pq2.pop();
+                if(x>y)
+                {
+                    v1.push_back(x-y);
+                }
+                else if(x<y)
+                {
+                    v2.push_back(y-x);
+                }
+            }
+            int v1size=v1.size();
+            int v2size=v2.size();
+            for(int i=0;i<v1size;i++)
+            {
+                pq1.push(v1[i]);
+            }
+            for(int i=0;i<v2.size();i++)
+            {
+                pq2.push(v2[i]);
+            }
+            v1.clear();
+            v2.clear();
+
+        }
+        if(pq1.empty() && pq2.empty())
+                cout<<"green and blue died"<<endl;
+            else if(pq2.empty())
+            {
+                cout<<"green wins"<<endl;
+                while(!pq1.empty())
+                {
+                    cout<<pq1.top()<<endl;
+                    pq1.pop();
+                }
+            }
+            else if(pq1.empty()) {
+                cout<<"blue wins"<<endl;
+                while(!pq2.empty())
+                {
+                    cout<<pq2.top()<<endl;
+                    pq2.pop();
+                }
+
+            }
+        if(t)
+            cout<<endl;
+    }
+}
